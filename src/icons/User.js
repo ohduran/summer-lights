@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "../global.css"
 
-export default class User extends Component {
+export class User extends Component {
   render() {
     return (
       <svg className={`fill-current ${this.props.className}`}>

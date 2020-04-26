@@ -1,11 +1,7 @@
 import React, { Component } from "react"
 
 import "../global.css"
-
-import ShoppingBag from "../icons/ShoppingBag"
-import User from "../icons/User"
-import OpenBook from "../icons/OpenBook"
-import Heart from "../icons/Heart"
+import { ShoppingBag, User, OpenBook, Heart } from "../icons"
 
 export default class NavBar extends Component {
   render() {

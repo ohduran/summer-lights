@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "../global.css"
 
-export default class OpenBook extends Component {
+export class OpenBook extends Component {
   render() {
     return (
       <svg className={`fill-current ${this.props.className}`}>

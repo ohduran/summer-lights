@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "../global.css"
 
-export default class ShoppingBag extends Component {
+export class ShoppingBag extends Component {
   render() {
     return (
       <svg className={`fill-current ${this.props.className}`}>

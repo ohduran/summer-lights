@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import "../global.css"
 
-export default class Heart extends Component {
+export class Heart extends Component {
   render() {
     return (
       <svg className={`fill-current ${this.props.className}`}>
