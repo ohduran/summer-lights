@@ -6,13 +6,13 @@ import Swiper from "react-id-swiper"
 
 import "../global.css"
 
-import NavBar from "../components/NavBar"
 import ProductImage from "../components/ProductImage"
+import { Default } from "../layouts/Default"
 
 const IndexPage = ({ data }) => {
   const swiperParams = {
     slidesPerView: 2,
-    spaceBetween: 2,
+    spaceBetween: 5,
     swipeToSlide: true,
     grabCursor: true,
     scrollbar: {
@@ -23,7 +23,7 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-    <main className="min-h-screen">
+    <Default>
       <section>
         <Img fluid={data.allFile.edges[0].node.childImageSharp.fluid} />
         <h1 className="text-5xl text-center text-yellow-900 font-family-pacifico">
@@ -33,20 +33,22 @@ const IndexPage = ({ data }) => {
           #Reinvéntate
         </h2>
       </section>
-      <section id="carousel" className="mt-1">
+      {/*
+      {Math.floor(Math.random() * data.allShopifyProduct.edges.length)}
+      */}
+      <section id="carousel" className="my-1 pb-16">
         <Swiper {...swiperParams}>
-          {data.allShopifyProduct.edges.map(edge => {
+          {data.allShopifyProduct.edges.slice(0, 5).map(edge => {
             return (
               <ProductImage
-                className="h-64 object-cover object-center"
+                className="h-72 object-cover object-center"
                 fluid={edge.node.images[0].localFile.childImageSharp.fluid}
               />
             )
           })}
         </Swiper>
       </section>
-      <NavBar />
-    </main>
+    </Default>
   )
 }
 export default IndexPage
