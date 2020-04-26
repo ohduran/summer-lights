@@ -1,10 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import "swiper/css/swiper.css"
+import Swiper from "react-id-swiper"
+
 import "../global.css"
+
 import NavBar from "../components/NavBar"
+import ProductImage from "../components/ProductImage"
 
 const IndexPage = ({ data }) => {
+  const swiperParams = {
+    slidesPerView: 2,
+    spaceBetween: 2,
+    swipeToSlide: true,
+    grabCursor: true,
+    scrollbar: {
+      el: ".swiper-scrollbar",
+      draggable: true,
+      hide: true,
+    },
+  }
+
   return (
     <main className="min-h-screen">
       <section>
@@ -16,13 +33,17 @@ const IndexPage = ({ data }) => {
           #Reinvéntate
         </h2>
       </section>
-      <section>
-        <Img
-          fluid={
-            data.allShopifyProduct.edges[0].node.images[0].localFile
-              .childImageSharp.fluid
-          }
-        />
+      <section id="carousel" className="mt-1">
+        <Swiper {...swiperParams}>
+          {data.allShopifyProduct.edges.map(edge => {
+            return (
+              <ProductImage
+                className="h-64 object-cover object-center"
+                fluid={edge.node.images[0].localFile.childImageSharp.fluid}
+              />
+            )
+          })}
+        </Swiper>
       </section>
       <NavBar />
     </main>
