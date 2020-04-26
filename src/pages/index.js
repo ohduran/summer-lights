@@ -1,4 +1,10 @@
 import React from "react"
 import "../global.css"
+import NavBar from "../components/NavBar"
 
-export default () => <div>Hello world!</div>
+export default () => (
+  <main className="min-h-screen">
+    <section></section>
+    <NavBar />
+  </main>
+)
