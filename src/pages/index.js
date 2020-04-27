@@ -40,10 +40,12 @@ const IndexPage = ({ data }) => {
         <Swiper {...swiperParams}>
           {data.allShopifyProduct.edges.slice(0, 5).map(edge => {
             return (
-              <ProductImage
-                className="h-72 object-cover object-center"
-                fluid={edge.node.images[0].localFile.childImageSharp.fluid}
-              />
+              <div className="h-72">
+                <ProductImage
+                  className="h-72 w-full object-cover object-center"
+                  fluid={edge.node.images[0].localFile.childImageSharp.fluid}
+                />
+              </div>
             )
           })}
         </Swiper>
