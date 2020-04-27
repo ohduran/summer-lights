@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{"6sRQ":function(t,e,n){"use strict";n.r(e),n.d(e,"ProductPageQuery",(function(){return u}));var r=n("q1tI"),a=n.n(r);e.default=function(t){var e=t.data.shopifyProduct;return a.a.createElement("div",null,a.a.createElement("h1",null,e.title))};var u="3529529708"}}]);
+//# sourceMappingURL=component---src-templates-producto-js-44b54da83b43e287d3c1.js.map
