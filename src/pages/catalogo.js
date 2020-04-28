@@ -1,13 +1,15 @@
 import React, { Component } from "react"
 import { Default } from "../layouts/Default"
-
+import algoliasearch from "algoliasearch/lite"
+import { InstantSearch, Hits, SearchBox } from "react-instantsearch-dom"
 import ProductImage from "../components/ProductImage"
 
 export default class catalogo extends Component {
   render() {
-    const {
-      allShopifyProduct: { nodes: products },
-    } = this.props.data
+    const searchClient = algoliasearch(
+      process.env.GATSBY_ALGOLIA_APP_ID,
+      process.env.GATSBY_ALGOLIA_SEARCH_KEY
+    )
     return (
       <Default
         className="grid"
@@ -23,14 +25,12 @@ export default class catalogo extends Component {
           </h1>
         </header>
         <main className="col-start-2 row-start-2 grid grid-cols-2 grid-rows-3 gap-1">
-          {products.map(product => {
-            return (
-              <ProductImage
-                className="h-64 object-cover object-center"
-                fluid={product.images[0].localFile.childImageSharp.fluid}
-              />
-            )
-          })}
+          <InstantSearch indexName="products" searchClient={searchClient}>
+            <div className="right-panel">
+              <SearchBox />
+              <Hits />
+            </div>
+          </InstantSearch>
         </main>
         <aside className="col-start-1 row-start-2">Aside</aside>
       </Default>
