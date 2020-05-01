@@ -1,12 +1,7 @@
 import React, { Component } from "react"
 import { Default } from "../layouts/Default"
 import algoliasearch from "algoliasearch/lite"
-import {
-  InstantSearch,
-  Hits,
-  SearchBox,
-  RefinementList,
-} from "react-instantsearch-dom"
+import { InstantSearch, Hits } from "react-instantsearch-dom"
 
 import CatalogoItem from "../components/CatalogoItem"
 import { MagnifyingGlass } from "../icons"
@@ -35,11 +30,7 @@ export default class catalogo extends Component {
             <main className="col-span-2 row-start-2">
               <Hits hitComponent={CatalogoItem} />
             </main>
-            <aside className="col-span-2 row-start-3">
-              <section className="my-48">
-                <RefinementList />
-              </section>
-            </aside>
+            <aside className="col-span-2 row-start-3"></aside>
           </div>
         </InstantSearch>
       </Default>

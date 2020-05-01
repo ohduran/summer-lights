@@ -6,7 +6,7 @@ import "../global.css"
 export class Default extends Component {
   render() {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen pb-20">
         <main className={this.props.className} style={this.props.style}>
           {this.props.children}
         </main>
