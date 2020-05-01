@@ -1,8 +1,16 @@
 import React, { Component } from "react"
 import { Default } from "../layouts/Default"
 import algoliasearch from "algoliasearch/lite"
-import { InstantSearch, Hits, SearchBox } from "react-instantsearch-dom"
+import {
+  InstantSearch,
+  Hits,
+  SearchBox,
+  RefinementList,
+} from "react-instantsearch-dom"
+
 import CatalogoItem from "../components/CatalogoItem"
+import { MagnifyingGlass } from "../icons"
+import CustomSearchBox from "../components/SearchBox"
 
 export default class catalogo extends Component {
   render() {
@@ -22,19 +30,15 @@ export default class catalogo extends Component {
             }}
           >
             <header className="col-start-1 col-end-3 row-start-1">
-              <section className="w-8/12 mx-auto">
-                <SearchBox
-                  translations={{
-                    placeholder: " Buscar",
-                  }}
-                />
-              </section>
+              <CustomSearchBox />
             </header>
             <main className="col-span-2 row-start-2">
               <Hits hitComponent={CatalogoItem} />
             </main>
             <aside className="col-span-2 row-start-3">
-              <h1 className="my-20">Aside</h1>
+              <section className="my-48">
+                <RefinementList />
+              </section>
             </aside>
           </div>
         </InstantSearch>
