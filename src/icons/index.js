@@ -1,4 +1,5 @@
 export { Heart } from "./Heart"
+export { MagnifyingGlass } from "./MagnifyingGlass"
 export { OpenBook } from "./OpenBook"
 export { ShoppingBag } from "./ShoppingBag"
 export { User } from "./User"

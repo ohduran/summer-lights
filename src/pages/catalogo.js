@@ -1,65 +1,39 @@
 import React, { Component } from "react"
 import { Default } from "../layouts/Default"
+import algoliasearch from "algoliasearch/lite"
+import { InstantSearch, Hits } from "react-instantsearch-dom"
 
-import ProductImage from "../components/ProductImage"
+import CatalogoItem from "../components/CatalogoItem"
+import { MagnifyingGlass } from "../icons"
+import CustomSearchBox from "../components/SearchBox"
 
 export default class catalogo extends Component {
   render() {
-    const {
-      allShopifyProduct: { nodes: products },
-    } = this.props.data
+    const searchClient = algoliasearch(
+      process.env.GATSBY_ALGOLIA_APP_ID,
+      process.env.GATSBY_ALGOLIA_SEARCH_KEY
+    )
     return (
-      <Default
-        className="grid"
-        style={{
-          gridTemplateColumns: "1fr 2fr",
-          gridTemplateRows: "2rem 1fr",
-          alignItems: "center",
-        }}
-      >
-        <header className="col-start-1 col-end-3 row-start-1">
-          <h1 className="text-center text-2xl font-family-alternates">
-            Catálogo
-          </h1>
-        </header>
-        <main className="col-start-2 row-start-2 grid grid-cols-2 grid-rows-3 gap-1">
-          {products.map(product => {
-            return (
-              <ProductImage
-                className="h-64 object-cover object-center"
-                fluid={product.images[0].localFile.childImageSharp.fluid}
-              />
-            )
-          })}
-        </main>
-        <aside className="col-start-1 row-start-2">Aside</aside>
+      <Default>
+        <InstantSearch indexName="products" searchClient={searchClient}>
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: "1fr 2fr",
+              gridTemplateRows: "5rem 1fr max-content",
+              alignItems: "center",
+            }}
+          >
+            <header className="col-start-1 col-end-3 row-start-1">
+              <CustomSearchBox />
+            </header>
+            <main className="col-span-2 row-start-2">
+              <Hits hitComponent={CatalogoItem} />
+            </main>
+            <aside className="col-span-2 row-start-3"></aside>
+          </div>
+        </InstantSearch>
       </Default>
     )
   }
 }
-
-export const CatalogoPageQuery = graphql`
-  query allProducts {
-    allShopifyProduct {
-      nodes {
-        title
-        handle
-        images {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 290) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-        priceRange {
-          maxVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-      }
-    }
-  }
-`

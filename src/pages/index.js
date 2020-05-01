@@ -12,7 +12,7 @@ import { Default } from "../layouts/Default"
 const IndexPage = ({ data }) => {
   const swiperParams = {
     slidesPerView: 2,
-    spaceBetween: 5,
+    spaceBetween: 13,
     swipeToSlide: true,
     grabCursor: true,
     scrollbar: {
@@ -36,7 +36,7 @@ const IndexPage = ({ data }) => {
       {/*
       {Math.floor(Math.random() * data.allShopifyProduct.edges.length)}
       */}
-      <section id="carousel" className="my-1 pb-16">
+      <section id="carousel" className="my-1">
         <Swiper {...swiperParams}>
           {data.allShopifyProduct.edges.slice(0, 5).map(edge => {
             return (
