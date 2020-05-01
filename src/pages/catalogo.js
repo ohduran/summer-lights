@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Default } from "../layouts/Default"
 import algoliasearch from "algoliasearch/lite"
 import { InstantSearch, Hits, SearchBox } from "react-instantsearch-dom"
-import ProductImage from "../components/ProductImage"
+import CatalogoItem from "../components/CatalogoItem"
 
 export default class catalogo extends Component {
   render() {
@@ -11,55 +11,34 @@ export default class catalogo extends Component {
       process.env.GATSBY_ALGOLIA_SEARCH_KEY
     )
     return (
-      <Default
-        className="grid"
-        style={{
-          gridTemplateColumns: "1fr 2fr",
-          gridTemplateRows: "2rem 1fr",
-          alignItems: "center",
-        }}
-      >
-        <header className="col-start-1 col-end-3 row-start-1">
-          <h1 className="text-center text-2xl font-family-alternates">
-            Catálogo
-          </h1>
-        </header>
-        <main className="col-start-2 row-start-2 grid grid-cols-2 grid-rows-3 gap-1">
-          <InstantSearch indexName="products" searchClient={searchClient}>
-            <div className="right-panel">
-              <SearchBox />
-              <Hits />
-            </div>
-          </InstantSearch>
-        </main>
-        <aside className="col-start-1 row-start-2">Aside</aside>
+      <Default>
+        <InstantSearch indexName="products" searchClient={searchClient}>
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: "1fr 2fr",
+              gridTemplateRows: "5rem 1fr max-content",
+              alignItems: "center",
+            }}
+          >
+            <header className="col-start-1 col-end-3 row-start-1">
+              <section className="w-8/12 mx-auto">
+                <SearchBox
+                  translations={{
+                    placeholder: " Buscar",
+                  }}
+                />
+              </section>
+            </header>
+            <main className="col-span-2 row-start-2">
+              <Hits hitComponent={CatalogoItem} />
+            </main>
+            <aside className="col-span-2 row-start-3">
+              <h1 className="my-20">Aside</h1>
+            </aside>
+          </div>
+        </InstantSearch>
       </Default>
     )
   }
 }
-
-export const CatalogoPageQuery = graphql`
-  query allProducts {
-    allShopifyProduct {
-      nodes {
-        title
-        handle
-        images {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 290) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-        priceRange {
-          maxVariantPrice {
-            amount
-            currencyCode
-          }
-        }
-      }
-    }
-  }
-`
