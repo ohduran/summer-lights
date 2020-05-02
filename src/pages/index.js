@@ -44,6 +44,7 @@ const IndexPage = ({ data }) => {
                 <ProductImage
                   className="h-72 w-full object-cover object-center"
                   fluid={edge.node.images[0].localFile.childImageSharp.fluid}
+                  handle={edge.node.handle}
                 />
               </div>
             )
@@ -73,6 +74,7 @@ export const IndexPageQuery = graphql`
     allShopifyProduct {
       edges {
         node {
+          handle
           images {
             localFile {
               childImageSharp {
