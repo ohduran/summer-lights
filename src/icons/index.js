@@ -1,4 +1,4 @@
-export { Heart } from "./Heart"
+export { FilledHeart } from "./FilledHeart"
 export { MagnifyingGlass } from "./MagnifyingGlass"
 export { OpenBook } from "./OpenBook"
 export { ShoppingBag } from "./ShoppingBag"
