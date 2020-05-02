@@ -4,7 +4,6 @@ import algoliasearch from "algoliasearch/lite"
 import { InstantSearch, Hits } from "react-instantsearch-dom"
 
 import CatalogoItem from "../components/CatalogoItem"
-import { MagnifyingGlass } from "../icons"
 import CustomSearchBox from "../components/SearchBox"
 
 export default class catalogo extends Component {
