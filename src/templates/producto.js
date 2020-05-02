@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Img from "gatsby-image"
 
 import { Default } from "../layouts/Default"
+import { ProductConsumer } from "../context"
 
 const ProductPage = ({ data: { shopifyProduct: product } }) => {
   return (
@@ -31,6 +32,11 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
             {product.variants[0].priceV2.currencyCode}
           </h3>
         </section>
+        <ProductConsumer>
+          {value => {
+            return <h1>{value}</h1>
+          }}
+        </ProductConsumer>
         <section className="mx-5 mt-5 flex justify-evenly">
           <button className="bg-orange-300 hover:bg-orange-900 text-orange-900 hover:text-orange-300 focus:outline-none focus:bg-orange-900 px-6 py-3 rounded-lg shadow-lg text-lg">
             {product.variants[0].availableForSale
