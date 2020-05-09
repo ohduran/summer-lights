@@ -1,23 +1,43 @@
-import React, { Component } from "react"
+import React, { useContext } from "react"
 import { Link } from "gatsby"
 
 import "../global.css"
-import { ShoppingBag, User, OpenBook, FilledHeart } from "../icons"
+import { ShoppingBag, OpenBook } from "../icons"
+import { CartContext } from "../contexts/CartContext"
 
-export default class NavBar extends Component {
-  render() {
-    return (
-      <nav className="fixed bottom-0 w-full overflow-hidden flex justify-evenly bg-gray-900 z-10 text-orange-100">
-        <Link to="/catalogo" className="py-6">
-          <OpenBook className="h-6 w-6" />
-        </Link>
-        <Link to="/" className="py-6 font-family-pacifico">
-          SL
-        </Link>
-        <a className="py-6">
-          <ShoppingBag className="h-6 w-6" />
-        </a>
-      </nav>
-    )
-  }
+const NavBar = () => {
+  const { cart } = useContext(CartContext)
+  return (
+    <nav className="fixed bottom-0 w-full overflow-hidden flex justify-evenly bg-gray-900 z-10 text-orange-100">
+      <Link to="/catalogo" className="py-6">
+        <OpenBook className="h-6 w-6" />
+      </Link>
+      <Link to="/" className="py-6 font-family-pacifico">
+        SL
+      </Link>
+      <Link
+        to="/"
+        className="py-6 grid grid-cols-2"
+        style={{
+          gridTemplateRows: "min-content",
+        }}
+      >
+        <ShoppingBag className="h-6 w-6 row-start-1 col-start-1 col-end-3" />
+        {cart.length ? (
+          <span
+            className="row-start-1 col-start-2 z-10 text-xs text-center font-semibold text-white bg-orange-900 rounded-full"
+            style={{
+              alignSelf: "start",
+            }}
+          >
+            {cart.length}
+          </span>
+        ) : (
+          ""
+        )}
+      </Link>
+    </nav>
+  )
 }
+
+export default NavBar
