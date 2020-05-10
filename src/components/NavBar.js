@@ -7,6 +7,7 @@ import { CartContext } from "../contexts/CartContext"
 
 const NavBar = () => {
   const { cart } = useContext(CartContext)
+
   return (
     <nav className="fixed bottom-0 w-full overflow-hidden flex justify-evenly bg-gray-900 z-10 text-orange-100">
       <Link to="/catalogo" className="py-6">
@@ -23,14 +24,14 @@ const NavBar = () => {
         }}
       >
         <ShoppingBag className="h-6 w-6 row-start-1 col-start-1 col-end-3" />
-        {cart.length ? (
+        {cart.checkout.lineItems.length ? (
           <span
             className="row-start-1 col-start-2 z-10 text-xs text-center font-semibold text-white bg-orange-900 rounded-full"
             style={{
               alignSelf: "start",
             }}
           >
-            {cart.length}
+            {cart.checkout.lineItems.length}
           </span>
         ) : (
           ""

@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Img from "gatsby-image"
 
 import { Default } from "../layouts/Default"
+import { CartContext } from "../contexts/CartContext"
+import AddToCartButton from "./components/AddToCartButton"
 
 const ProductPage = ({ data: { shopifyProduct: product } }) => {
   const variants = product.variants
-
   const [variant, setVariant] = useState(variants[0])
 
   return (
@@ -32,11 +33,7 @@ const ProductPage = ({ data: { shopifyProduct: product } }) => {
           <h3 className="text-3xl">
             {variant.priceV2.amount} {variant.priceV2.currencyCode}
           </h3>
-          <button className="bg-orange-300 hover:bg-orange-900 text-orange-900 hover:text-orange-300 focus:outline-none focus:bg-orange-900 px-6 py-3 rounded-lg shadow-lg text-lg">
-            {variant.availableForSale
-              ? "Añadir a la Bolsa"
-              : "Producto no disponible"}
-          </button>
+          <AddToCartButton variant={variant} />
         </section>
 
         <section className="mx-8 mt-8">
