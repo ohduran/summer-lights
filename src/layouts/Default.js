@@ -1,17 +1,20 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import NavBar from "../components/NavBar"
 
 import "../global.css"
+import CartContextProvider from "../contexts/CartContext"
 
-export class Default extends Component {
-  render() {
-    return (
+const Default = ({ className, style, children }) => {
+  return (
+    <CartContextProvider>
       <div className="min-h-screen pb-20">
-        <main className={this.props.className} style={this.props.style}>
-          {this.props.children}
+        <main className={className} style={style}>
+          {children}
         </main>
         <NavBar />
       </div>
-    )
-  }
+    </CartContextProvider>
+  )
 }
+
+export { Default }
